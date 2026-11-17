@@ -1,0 +1,72 @@
+kind: Pod                              
+apiVersion: v1                     
+metadata:                           
+  name: testpod
+  annotations:
+    description: This file is to define the use of the annotation                 
+spec:                                    
+  containers:                      
+  - name: c00                     
+    image: ubuntu              
+    command: ["/bin/bash", "-c", "while true; do echo Hello World; sleep 5 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+# C:\Users\ASUS\Documents\AWS-HandsOn\Kubernetes\minikube>kubectl describe pod testpod
+# Name:             testpod
+# Namespace:        default
+# Priority:         0
+# Service Account:  default
+# Node:             minikube/192.168.49.2
+# Start Time:       Tue, 17 Nov 2026 20:26:20 +0530
+# Labels:           <none>
+# Annotations:      description: This file is to define the use of the annotation
+# Status:           Running
+# IP:               10.244.0.6
+# IPs:
+#   IP:  10.244.0.6
+# Containers:
+#   c00:
+#     Container ID:  containerd://4b753d8053935a7f588e6c055aee5dfee87baab39d04433d6fd2bf39cdeb75ca
+#     Image:         ubuntu
+#     Image ID:      docker.io/library/ubuntu@sha256:065aa8626841f16057b78b027b464cd59c4fac36c204c72dcbf48d66f5fa8a96
+#     Port:          <none>
+#     Host Port:     <none>
+#     Command:
+#       /bin/bash
+#       -c
+#       while true; do echo Hello World; sleep 5 ; done
+#     State:          Running
+#       Started:      Tue, 17 Nov 2026 20:26:22 +0530
+#     Ready:          True
+#     Restart Count:  0
+#     Environment:    <none>
+#     Mounts:
+#       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qmdwb (ro)
+# Conditions:
+#   Type                        Status
+#   PodReadyToStartContainers   True
+#   Initialized                 True
+#   Ready                       True
+#   ContainersReady             True
+#   PodScheduled                True
+# Volumes:
+#   kube-api-access-qmdwb:
+#     Type:                    Projected (a volume that contains injected data from multiple sources)
+#     TokenExpirationSeconds:  3607
+#     ConfigMapName:           kube-root-ca.crt
+#     Optional:                false
+#     DownwardAPI:             true
+# QoS Class:                   BestEffort
+# Node-Selectors:              <none>
+# Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+#                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+# Events:
+#   Type    Reason     Age   From               Message
+#   ----    ------     ----  ----               -------
+#   Normal  Scheduled  17s   default-scheduler  Successfully assigned default/testpod to minikube
+#   Normal  Pulling    16s   kubelet            Pulling image "ubuntu"
+#   Normal  Pulled     15s   kubelet            Successfully pulled image "ubuntu" in 1.684s (1.684s including waiting). Image size: 42179429 bytes.
+#   Normal  Created    15s   kubelet            Container created
+#   Normal  Started    14s   kubelet            Container started
+
+# C:\Users\ASUS\Documents\AWS-HandsOn\Kubernetes\minikube>
